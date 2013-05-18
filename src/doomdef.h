@@ -103,7 +103,7 @@ extern FILE *logstream;
 #define CODEBASE 206 // For future use, the codebase is the version of SRB2 that the modification is based on, and should not be changed unless you have merged changes between versions of SRB2 (such as 2.0.4 to 2.0.5, etc) into your working copy. Will always resemble the versionstring, 205 = 2.0.5, 210 = 2.1, etc.
 
 #define VERSION 200 // Game version
-#define VERSIONSTRING " v2.0.6"
+#define VERSIONSTRING " v2.0.6_py"
 
 // HIGHLY IMPORTANT Modification Options, MUST be changed when creating a modification (or updating SRB2), else a lot of errors will occur when trying to access the Master Server. If you are just making clientside fixes for private use, that will not break netplay, these options are not important, but any builds not compatible with the normal SRB2 release must change these options accordingly, if they are compatible with normal releases but you would still like to enable the updating feature, you must still change these values.
 #define MODID 1 // The Modification ID (1 = Official Build), must be obtained directly from Cue (http://mb.srb2.org/private.php?do=newpm&u=758), DO NOT try to set this without speaking to Cue, it will cause a lot of problems and your modification will be unplayable through the Master Server.
@@ -173,9 +173,11 @@ void I_OutputMsg(const char *error, ...) FUNCPRINTF;
 void CONS_Printf(const char *fmt, ...) FUNCPRINTF;
 
 #ifdef _DEBUG
-#define DEBPRINT(msg) { if (cv_debug || devparm) { CONS_Printf("%s", msg); } else { I_OutputMsg("%s", msg); } }
+//#define DEBPRINT(msg) { if (cv_debug || devparm) { CONS_Printf("%s", msg); } else { I_OutputMsg("%s", msg); } }
+#define DEBPRINT(fmt, ...) { if (cv_debug || devparm) { CONS_Printf(fmt, __VA_ARGS__); } else { I_OutputMsg(fmt, __VA_ARGS__); } }
 #else
-#define DEBPRINT(msg) { if (devparm) { I_OutputMsg("%s", msg); } }
+//#define DEBPRINT(msg) { if (devparm) { I_OutputMsg("%s", msg); } }
+#define DEBPRINT(fmt, ...) { if (devparm) { CONS_Printf(fmt, __VA_ARGS__); } else { I_OutputMsg(fmt, __VA_ARGS__); } }
 #endif
 
 #include "m_swap.h"

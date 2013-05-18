@@ -55,7 +55,7 @@
 #endif
 
 #if (defined (_WIN32) && !defined (_XBOX) && !defined(NOFMOD)) || defined (HAVE_FMOD)
-#define FMODSOUND // comment out this to disable MOD/IT/MP3/OGG music playback
+//#define FMODSOUND // comment out this to disable MOD/IT/MP3/OGG music playback
 #endif
 
 #ifdef FMODSOUND

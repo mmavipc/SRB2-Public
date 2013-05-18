@@ -77,15 +77,15 @@ static INT32 WINAPI VID_SetWindowedDisplayMode(viddef_t *lvid, vmode_t *currentm
 
 // this holds description of the startup video mode,
 // the resolution is 320x200, windowed on the desktop
-static char winmode1[] ="320x200W"; // W to make sure it's the windowed mode
+static char winmode1[] ="960x600W"; // W to make sure it's the windowed mode
 static char winmode2[] = "640x400W"; // W to make sure it's the windowed mode
 vmode_t specialmodes[2] =
 {
 	{
 		NULL,
 		winmode1, // hehe
-		320, 200, //(200.0/320.0)*(320.0/240.0),
-		320, 1, // rowbytes, bytes per pixel
+		960, 600, //(200.0/320.0)*(320.0/240.0),
+		960, 1, // rowbytes, bytes per pixel
 		1, 2, // windowed (TRUE), numpages
 		NULL,
 		VID_SetWindowedDisplayMode, 0
@@ -813,7 +813,7 @@ static VOID VID_Init(VOID)
 #endif
 
 	// set the startup screen in a window
-	VID_SetMode(0);
+	VID_SetMode(1);
 }
 
 // --------------------------
